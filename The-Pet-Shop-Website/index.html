@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pet Shop | Asia Mohamad</title>
+    <style>
+        /* Unique & Simple Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfaf6; /* Warm off-white */
+            color: #333;
+        }
+
+        header {
+            background-color: #ff9f43; /* Soft Orange */
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 5px solid #ee5253;
+        }
+
+        nav {
+            background: #fff;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #ee5253;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .pet-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .pet-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pet-info {
+            padding: 20px;
+        }
+
+        img, video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .badge {
+            background: #10ac84;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🐾 The Pet Shop</h1>
+    <p>Welcome, <strong>Asia Mohamad</strong>! Find your new best friend here.</p>
+</header>
+
+<nav>
+    <a href="#dogs">Dogs</a>
+    <a href="#cats">Cats</a>
+    <a href="#birds">Birds</a>
+</nav>
+
+<div class="container">
+    
+    <!-- Pet Section: Dogs -->
+    <section id="dogs">
+        <h2>Our Playful Pups</h2>
+        <div class="pet-card">
+            <!-- Actual Dog Image -->
+            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=1000" alt="Cute Golden Retriever Puppy">
+            <div class="pet-info">
+                <h3>Golden Retriever <span class="badge">Available</span></h3>
+                <p>Meet "Sunny," a bundle of joy who loves afternoon naps and playing fetch in the park.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pet Section: Cats (With Video) -->
+    <section id="cats">
+        <h2>Feline Friends</h2>
+        <div class="pet-card">
+            <div class="pet-info">
+                <h3>Meet the Kittens</h3>
+                <p>Watch these energetic kittens play in our nursery!</p>
+            </div>
+            <!-- Actual Pet Video -->
+            <video controls poster="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=1000">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <!-- Pet Section: Birds -->
+    <section id="birds">
+        <h2>Colorful Birds</h2>
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1522926197414-721861fefc85?auto=format&fit=crop&q=80&w=1000" alt="Colorful Parrot">
+            <div class="pet-info">
+                <h3>Tropical Macaw</h3>
+                <p>Highly intelligent and very vocal. Perfect for a lively home!</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 The Pet Shop | Created by Asia Mohamad</p>
+</footer>
+
+</body>
+</html>
