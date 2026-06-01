@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asia Mohammad Khalaf | Creative Portfolio</title>
+    <style>
+        /* --- Core Reset & Palette Variables --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Century Gothic', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        :root {
+            --bg-base: #0f0c20;
+            --card-bg: #1a1636;
+            --neon-coral: #ff5e62;
+            --neon-orange: #ff9966;
+            --neon-teal: #00f2fe;
+            --text-pure: #ffffff;
+            --text-sub: #b4b0d0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-pure);
+            overflow-x: hidden;
+            padding-top: 70px; /* Layout offset for fixed navbar */
+        }
+
+        /* --- Dynamic Fixed Navigation Bar --- */
+        .fixed-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: var(--card-bg);
+            border-bottom: 3px solid var(--neon-teal);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 9999;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--neon-coral), var(--neon-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links-wrapper {
+            display: flex;
+            list-style: none;
+            height: 100%;
+        }
+
+        .nav-links-wrapper li {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links-wrapper a {
+            color: var(--text-sub);
+            text-decoration: none;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hover effect on navbar elements */
+        .nav-links-wrapper a:hover {
+            background-color: var(--neon-teal);
+            color: var(--bg-base);
+            font-weight: 700;
+            box-shadow: inset 0 -4px 0 var(--neon-coral);
+        }
+
+        /* --- Ambient Video Background with Text Overlay --- */
+        .video-banner {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Autoplay, muted, loop background video */
+        .video-banner video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+            filter: saturate(1.8) brightness(0.35);
+        }
+
+        .video-overlay-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .video-overlay-content h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(to right, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .video-overlay-content p {
+            font-size: 1.6rem;
+            color: var(--text-pure);
+            font-weight: 300;
+        }
+
+        /* --- Content Container --- */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 30px;
+        }
+
+        .block-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--text-pure);
+            border-bottom: 2px dashed var(--neon-coral);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* --- Profile Image Center, Rounding, and Filter Manipulation --- */
+        .avatar-center-container {
+            display: flex;
+            justify-content: center; /* Verification: Centered image */
+            margin-bottom: 60px;
+        }
+
+        .portfolio-avatar {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 30px 80px 30px 80px; /* Verification: Rounded edges uniquely styled */
+            border: 4px solid var(--neon-orange);
+            filter: grayscale(30%) sepia(20%) contrast(1.2); /* Verification: CSS filter applied */
+            box-shadow: 0 15px 35px rgba(255, 153, 102, 0.3);
+        }
+
+        /* --- Paragraph Component with Hover Trigger --- */
+        .hover-paragraph {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--text-sub);
+            padding: 25px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 70px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Verification: CSS hover effect for <p> element */
+        .hover-paragraph:hover {
+            color: var(--text-pure);
+            background-color: #231d47;
+            transform: translateY(-8px);
+            border-right: 6px solid var(--neon-teal);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.2);
+        }
+
+        /* --- Two-Column Structural Layout Grid --- */
+        .split-layout {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* Verification: Specifying height, width, and font colors within columns */
+        .split-column {
+            width: 50%; /* Explicit width assignment */
+            height: 380px; /* Explicit height assignment */
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .split-column h3 {
+            color: var(--neon-orange);
+            font-size: 1.8rem;
+        }
+
+        .split-column p {
+            color: #cbd5e1; /* Specific inner text color */
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* --- Image Text Overlay & Fade Effects --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* Type 1: Text directly placed over image */
+        .image-text-card {
+            position: relative;
+            height: 340px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .image-text-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.45);
+        }
+
+        .text-overlay-lockup {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            right: 40px;
+        }
+
+        .text-overlay-lockup h4 {
+            font-size: 1.8rem;
+            color: var(--neon-teal);
+            margin-bottom: 8px;
+        }
+
+        /* Type 2: Clean Image Overlay Fade on Hover */
+        .image-fade-card {
+            position: relative;
+            height: 340px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .image-fade-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fade-curtain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255,94,98,0.95), rgba(15,12,32,0.95));
+            opacity: 0; /* Hidden state */
+            transition: opacity 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Verification: Trigger overlay fade action on hover */
+        .image-fade-card:hover .fade-curtain {
+            opacity: 1;
+        }
+
+        .fade-curtain h4 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .fade-curtain p {
+            color: var(--neon-orange);
+            font-size: 1.05rem;
+        }
+
+        /* --- Styled CSS Data Table Grid --- */
+        .data-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        /* Verification: Core border assignment */
+        table, th, td {
+            border: 2px solid #2e285c;
+        }
+
+        /* Verification: Row background configuration on top row */
+        tr:first-child {
+            background-color: var(--neon-coral);
+        }
+
+        tr:first-child th {
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Verification: Cell interior padding rules */
+        th, td {
+            padding: 18px 20px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+
+        tr:nth-child(even):not(:first-child) {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        /* --- Verification: Centered and Bold Footer Matrix --- */
+        footer {
+            background-color: #080614;
+            padding: 40px 20px;
+            border-top: 1px solid #2e285c;
+        }
+
+        footer p {
+            text-align: center; /* Centered instruction */
+            font-weight: bold; /* Bold instruction */
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive Flow Fallbacks */
+        @media (max-width: 850px) {
+            .split-layout, .gallery-grid {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+            .split-column {
+                width: 100%;
+                height: auto;
+                min-height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed-nav">
+        <div class="nav-brand">ASIA M. KHALAF</div>
+        <ul class="nav-links-wrapper">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about-me">About</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#structural-guide">How To Create a Fixed Menu</a></li>
+        </ul>
+    </nav>
+
+    <header class="video-banner">
+        <video autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-fluid-glowing-neon-lines-background-43187-large.mp4" type="video/mp4">
+            Your browser does not support HTML5 video loops.
+        </video>
+        <div class="video-overlay-content">
+            <h1>Asia Mohammad Khalaf</h1>
+            <p>Digital Creator & Design Strategist</p>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+
+        <section id="about-me">
+            <h2 class="block-title">01. Profile</h2>
+            <div class="avatar-center-container">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80" alt="Asia Mohammad Khalaf Portrait" class="portfolio-avatar">
+            </div>
+            
+            <p class="hover-paragraph">
+                Welcome to my interface space. I am Asia Mohammad Khalaf, a designer focused on building interactive, high-impact web components. My work balances playful design choices with solid layouts. Bring your mouse cursor over this block to feel the structural spring transition effect firsthand!
+            </p>
+        </section>
+
+        <section id="structural-guide">
+            <h2 class="block-title">02. Design Logic</h2>
+            <div class="split-layout">
+                <div class="split-column">
+                    <h3>Symmetric Distribution</h3>
+                    <p>This panel demonstrates clean split-layout positioning. By using CSS boundaries mapped to exact dimension limits, elements inside flow smoothly on both desktop screens and mobile devices.</p>
+                </div>
+                <div class="split-column">
+                    <h3>Fixed Header Implementation</h3>
+                    <p>To implement the scrolling pinned navigation system found on this web document, look closely at the style block. Applying <code>position: fixed</code> locks the header to your window coordinates flawlessly.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="block-title">03. Graphic Layers</h2>
+            <div class="gallery-grid">
+                
+                <div class="image-text-card">
+                    <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=600&q=80" alt="Vibrant Canvas">
+                    <div class="text-overlay-lockup">
+                        <h4>Static Overlay Configuration</h4>
+                        <p>This layer sits permanently visible right over the image using explicit z-index values.</p>
+                    </div>
+                </div>
+
+                <div class="image-fade-card">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Neon Swirl">
+                    <div class="fade-curtain">
+                        <h4>Interactive Fade Layer</h4>
+                        <p>This layout curtain modifies its opacity spectrum from 0 to 1 during hover interactions.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2 class="block-title">04. Academic Matrices</h2>
+            <div class="data-table-wrapper">
+                <table>
+                    <tr>
+                        <th>Project Key</th>
+                        <th>Target System Name</th>
+                        <th>Build Status</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Responsive Web Hub Archetype</td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Bootstrap Core Framework Layout</td>
+                        <td>In Production</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Advanced CSS</td>
+                        <td>Active Deployment</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Asia Mohammad Khalaf. Built with HTML5 & Vanilla CSS.</p>
+    </footer>
+
+</body>
+</html>
